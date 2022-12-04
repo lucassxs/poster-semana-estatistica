@@ -1,0 +1,124 @@
+%==============================================================================
+%== template for LATEX poster =================================================
+%==============================================================================
+%
+%--A0 beamer slide-------------------------------------------------------------
+\documentclass[final]{beamer}
+\usepackage[orientation=portrait,size=a0,
+            scale=1.55        % font scale factor
+           ]{beamerposter}
+           
+\geometry{
+  hmargin=2.5cm, % little modification of margins
+}
+
+%
+\usepackage[utf8]{inputenc}
+
+\linespread{1.15}
+%
+%==The poster style============================================================
+\usetheme{sharelatex}
+
+%==Title, date and authors of the poster=======================================
+\title
+[XVI Semana da Estatística da UEM 5 - 7 Dezembro de 2022] % Conference
+{ % Poster title
+WeatherMaringa
+}
+
+\author{ % Authors
+Lucas Stefano Xavier de Sousa\inst{1}, Brian Alvarez Ribeiro de Melo\inst{1}
+}
+\institute
+[Universidade Estadual de Maringá] % General University
+{
+\inst{1} Departamento de Estatística - Universidade Estadual de Maringá\\[0.3ex]
+}
+
+
+
+\begin{document}
+\begin{frame}[t]
+%==============================================================================
+\begin{multicols}{2}
+%==============================================================================
+%==The poster content==========================================================
+%==============================================================================
+
+\section{Introdução}
+
+O monitoramento do clima sempre foi essencial para as atividades do homem. Nos últimos
+tempos, com o avanço da tecnologia, uma grande quantidade de dados é gerada, principalmente no que
+diz respeito às condições climáticas. Esses dados podem auxiliar na tomada de decisões estratégicas e
+preventivas de um local. Contudo a existência e obtenção dessas informações nem sempre é conhecida.
+Em Maringá, esses dados são registrados e compilados pela Estação Climatológica Principal de Maringá
+(ECPM), que pertence à rede de estações do Instituto Nacional de Meteorologia (INMET), através dos
+horários-padrão estabelecidos pela Organização Meteorológica Mundial (OMM): 12, 18 e 24 do Tempo
+Médio de Greenwich (TMG), que correspondem às 9h, 15h e 21h do horário de Brasília.
+
+Esses dados incluem temperatura do ar, velocidade e direção do vento, umidade relativa do ar, radiação solar, nebulosidade, precipitação, pressão atmosférica, entre outros. Após o registro e compilação dos dados meteorológicos, a ECPM disponibiliza seu banco de dados meteorológicos composto por boletins, que contém uma série histórica completa, permitindo analisar o tempo e o clima de Maringá.
+
+\section{Objetivo}
+
+O objetivo geral do projeto consiste no desenvolvimento e disponibilização de um pacote do ambiente de programação R que permita a manipulação de dados meteorológicos de Maringá. De forma especifica o pacote possui três objetivos principais:
+\begin{itemize}
+  \item Facilitar a pesquisa e coleta de dados meteorológicos de Maringá;
+  \item Criar relatórios das séries históricas e atuais dos dados meteorológicos;
+  \item Analisar e compreender as mudanças climáticas que ocorrem em Maringá ao longo do tempo.
+\end{itemize}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=0.40\columnwidth]{hexlogo.png}
+\caption{Logo hexagonal do pacote com as cores da bandeira de Maringá}
+\end{figure}
+
+
+
+
+\section{Metodologia}
+
+Na execução deste projeto, seguimos os seguintes passos: em primeiro lugar, a obtenção do banco de  dados em formato CSV disponibilizado pela ECPM e pelo INMET. Para esta tarefa, utilizamos os pacotes do R:  \textit{Plumber} que permite criar uma API para automatizar as requisições de novos dados e   \textit{Tidyverse}  que inclui os diversos pacotes para análise e visualização de dados. Em seguida, utilizando o pacote  \textit{devtools}, que possui funções para criar pacotes e testar as funções, realizamos a construção, checagem e documentação do pacote dentro da nossa sessão do R. Durante o tempo de desenvolvimento, as tarefas repetitivas serão automatizadas utilizando o pacote  \textit{usethis} e o projeto será hospedado no Github e seu desenvolvimento ocorre na branch “dev”. Em terceiro lugar, dentro da própria branch “dev”, utilizamos o pacote  \textit{pkgdown} para tornar fácil e rápida a construção do site para o pacote. Nesta etapa, inciamos a documentação do pacote explicando suas funcionalidades e formas de uso. Em quarto lugar, utilizando o pacote  \textit{hexSticker} será desenvolvido o  \textit{sticker} hexágono do pacote. E por fim, o projeto será oficializado na branch  \textit{main} do repositório do Github para que seja possível a utilização do pacote em produção e manutenção. 
+Após o pacote estar finalizado na branch  \textit{main} do Github, foi realizada a  submissão do pacote na  \textit{CRAN (The Comprehensive R Archive Network)}, enviando o pacote em formato tar.gz juntamente com o  \textit{DESCRIPTION file} do projeto. O pacote ainda está em processo de validação após isso, poderá ser baixado direto da CRAN através do comando  \textit{install.packages(“weathermaringa”)}.
+
+
+\section{Resultados}
+
+Como resultado do desenvolvimento o pacote possui 3 funções básicas que já estão em produção, essas funções são responsáveis pelo funcionamento central do pacote e foram validas nos testes de performance do fluxo do  Github Actons:
+\begin{itemize}
+  \item weathermga-stats(): Apresenta uma lista de subfunções de análise descritiva utilizando o R Base;
+  \item weathermga-dl(): Download dos dados meteorológicos de Maringá;
+  \item weathermga-interp(): Interpola e adiciona os dados meteorológicos a um dataframe;
+  \item weathermga-temp(): Gera uma série histórica dos últimos 5 dias de Maringá.
+\end{itemize}
+
+
+\section{Discussão e Conclusão}
+
+Durante o desenvolvimento do pacote foi possível definir de forma principal que a obtenção de dados meteorológicos e climáticos de Maringá passou a ficar mais rápida e fácil, pois com apenas uma função o download das bases do INMET ou ECPM é realizado dentro do próprio R, já ficando anexada as funções de análise descritiva do pacote, este processo diminui o tempo de carregamento a cada chamada de função.
+
+
+%==============================================================================
+%==End of content==============================================================
+%==============================================================================
+
+%--References------------------------------------------------------------------
+
+\subsection{Referências}
+
+\begin{thebibliography}{99}
+
+\bibitem{ref2} Hamilton, J. M., Maddison, D. J., & Tol, R. S. (2005). \textit{Climate change and international tourism: a simulation study}. Global environmental change, 15(3), 253-266.
+
+\bibitem{ref3} R Core Team (2020). \textit{R: A language and environment for statistical computing}. R Foundation for Statistical Computing, Vienna, Austria.
+
+\end{thebibliography}
+%--End of references-----------------------------------------------------------
+
+\end{multicols}
+
+%==============================================================================
+\end{frame}
+\end{document}
